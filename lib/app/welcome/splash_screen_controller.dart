@@ -1,0 +1,5 @@
+class SplashScreenController {
+  const SplashScreenController();
+  
+   
+}
