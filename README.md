@@ -1,16 +1,10 @@
 # nex_spot_app
 
-A new Flutter project.
+This Application is for managing small business startups and using some basic AI as a productive way to manage your businesses and customer
 
-## Getting Started
+# Basic Features
+- Customer Management: Manage Customer Sales Performance and Analyze sales
+- Invoice/Receipt Creation: Generate an Invoice and Create a Receipt from the design Receipt/Invoice template created for you
+- Branding: Get well-curated AI messages to send to your Customers, keeping them engaged with the latest products.
+- and other features coming soon!
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
