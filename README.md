@@ -1,6 +1,6 @@
 # nex_spot_app
 
-This Application is for managing small business startups and using some basic AI as a productive way to manage your businesses and customer
+This Application is for managing small business startups and using some basic AI as a productive way to manage your businesses and customers
 
 # Basic Features
 - Customer Management: Manage Customer Sales Performance and Analyze sales
