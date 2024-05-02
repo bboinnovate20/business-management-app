@@ -9,11 +9,14 @@ class TabPageCustomSelector extends TabPageSelector {
     super.selectedColor,
     required this.colorScheme,
     required this.onTap,
+    this.size = 22,
   });
 
   final ColorScheme colorScheme;
   final void Function(int) onTap;
   
+  final double size;
+
   double _indexChangeProgress(TabController controller) {
   final double controllerValue = controller.animation!.value;
   final double previousIndex = controller.previousIndex.toDouble();
@@ -60,13 +63,16 @@ class TabPageCustomSelector extends TabPageSelector {
         background = selectedColorTween.begin!;
       }
     }
-    return GestureDetector(
-      onTap: () => onTap(tabIndex),
-      child: TabPageSelectorIndicator(
-        backgroundColor: background,
-        borderColor: selectedColorTween.end!,
-        size: 16,
-        borderStyle: borderStyle ?? BorderStyle.solid,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: GestureDetector(
+        onTap: () => onTap(tabIndex),
+        child: TabPageSelectorIndicator(
+          backgroundColor: background,
+          borderColor: selectedColorTween.end!,
+          size: size,
+          borderStyle: borderStyle ?? BorderStyle.solid,
+        ),
       ),
     );
   }

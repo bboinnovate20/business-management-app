@@ -160,7 +160,8 @@ class AnimatedPrimaryButton extends StatefulWidget  {
     required this.onPressed,
     this.width = 400,
     this.height = 60,
-    this.disabled = true,
+    this.disabled = false,
+    this.title = "Continue"
   });
 
   final void Function() onPressed;
@@ -168,6 +169,7 @@ class AnimatedPrimaryButton extends StatefulWidget  {
   final double width;
   final bool disabled;
   final double height;
+  final String title;
 
   @override
   State<AnimatedPrimaryButton> createState() => _AnimatedPrimaryButtonState();
@@ -204,7 +206,8 @@ class _AnimatedPrimaryButtonState extends State<AnimatedPrimaryButton> with Tick
         animation: _opacityController,
         builder: (context, child) {
           return SizedBox(
-            width:  lerp(_opacity.value, 0.0, 1.0, 100, widget.width),
+            width:  lerp(_opacity.value, 0.0, 1.0, 350, widget.width),
+            height: widget.height,
             child: Opacity(
               opacity:_opacity.value,
               child: ElevatedButton(
@@ -219,14 +222,14 @@ class _AnimatedPrimaryButtonState extends State<AnimatedPrimaryButton> with Tick
                       _opacity.value, 0.0, 1.0, 100, 10
                     ))))
                 ),
-                onPressed: () => {}, 
+                onPressed: widget.disabled ? () => {} : widget.onPressed, 
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
           
-                    const Text("Continue", 
-                      style: TextStyle(color: Colors.white, fontSize: 16)),
+                    Text(widget.title, 
+                      style: const TextStyle(color: Colors.white, fontSize: 16)),
                     
                       Transform.translate(
                         offset: Offset(

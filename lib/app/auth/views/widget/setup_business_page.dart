@@ -15,18 +15,16 @@ class SetupBusiness extends StatelessWidget {
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
 
-    return  Column(
+    return   Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
          const CustomHeader(
           title: 'Setup your Business',
-          subTitle: 'We require your little business information to set up your business',
+          subTitle: 'We require your little business',
         ),
-         Expanded(
-      child: Container(
-        margin: const EdgeInsets.only(top: 25, right: 8),
-        child: SetupBusinessForm(formKey: formKey, onSuccess: onCompletion),
-      ),
-    ),
+        Expanded(
+            child: SetupBusinessForm(formKey: formKey, onSuccess: onCompletion),
+        ),
       ],
     );
   }

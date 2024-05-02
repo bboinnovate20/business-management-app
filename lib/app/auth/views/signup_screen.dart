@@ -3,7 +3,7 @@ import 'package:nex_spot_app/app/auth/views/widget/setup_business_page.dart';
 import 'package:nex_spot_app/app/auth/views/widget/upload_section_page.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_container.dart';
 
-import 'widget/create_account_page.dart';
+import 'widget/create_personal_account_page.dart';
 import 'widget/signup_indicator.dart';
 
 class SignUp extends StatefulWidget {
@@ -20,15 +20,12 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin{
     int currentStage = 0;
 
 
-  onStageCompletion() {
-    
-
+  goToNextPage() {    
     int nextStage = currentStage + 1;
     //
     if(nextStage == totalStage) {
       //to to success page
     }
-
     if(nextStage == totalStage || nextStage < 0) return;
 
     _pageViewController.animateToPage(nextStage, 
@@ -64,14 +61,14 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin{
 
           Expanded(
             child: Container(
-              margin: const EdgeInsets.only(right: 12, left: 12, top: 30),
+              margin: const EdgeInsets.only(right: 18, left: 18, top: 30),
               child: PageView(
                 controller: _pageViewController,
                 physics: const NeverScrollableScrollPhysics(),
               children:  [
-                CreateAccount(stage: 0, onCompletion: onStageCompletion),
-                SetupBusiness(stage: 1, onCompletion: onStageCompletion),
-                UploadSection(stage: 2, onCompletion: onStageCompletion),
+                CreatePersonalAccount(stage: 0, onCompletion: goToNextPage),
+                SetupBusiness(stage: 1, onCompletion: goToNextPage),
+                UploadSection(stage: 2, onCompletion: goToNextPage),
               ]
               )),
           )

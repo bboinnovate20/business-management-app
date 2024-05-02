@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nex_spot_app/cores/common/widget/custom_container.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_text_field.dart';
 import 'package:nex_spot_app/cores/common/widget/primary_button.dart';
 import 'package:nex_spot_app/cores/utils/validator.dart';
@@ -73,14 +74,21 @@ class _SignUpFormState extends State<SetupBusinessForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Form(
+    return CustomContainer(
+      withMargin: false,
+      bottom:  Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        child: PrimaryButton(title: 
+                loading ? 'Creating Business Account' :
+                'Continue', onPressed: () =>submit(), disabled: loading || !readyToSubmit, loading: loading),
+      ),
+      child: Padding(
+      
+         padding: const EdgeInsets.only(top: 25),
+        child: Form(
           key: formKey,
-          child:  Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child:  ListView(
+       
           children: [
             CustomTextField(
               controller: businessNameController,
@@ -125,9 +133,9 @@ class _SignUpFormState extends State<SetupBusinessForm> {
                 }
               ],
               onChangedValue: (value) { setState(() => stateController = value);},),
-        
+                  
           ],
-        ),
+                  ),
         onChanged: () async {
           if(await fieldsNotEmpty()) {
             setState(() =>readyToSubmit = true);
@@ -137,10 +145,7 @@ class _SignUpFormState extends State<SetupBusinessForm> {
           }
         },
         ),
-        PrimaryButton(title: 
-            loading ? 'Creating Business Account' :
-            'Continue', onPressed: () =>submit(), disabled: loading || !readyToSubmit, loading: loading),
-      ],
+      ),
     );
   }
 }

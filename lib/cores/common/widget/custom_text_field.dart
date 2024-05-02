@@ -26,7 +26,7 @@ class CustomTextField extends StatelessWidget {
     bool isHidden = true;
     return Container(
       margin: EdgeInsets.only(bottom: bottomMargin),
-      width: MediaQuery.of(context).size.width - 0,
+      // width: MediaQuery.of(context).size.width,
       child: isSecured ?  
       StatefulBuilder(
         builder: (context, setState) {

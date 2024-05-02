@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   
   moveToNextDashBoard() {
     //
-    Future.delayed(const Duration(seconds: 3), () => Navigator.pushNamed(context, NamedRoutes.register));
+    Future.delayed(const Duration(seconds: 4), () => Navigator.pushNamed(context, NamedRoutes.onboarding));
   }
 
   @override

@@ -1,12 +1,16 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:nex_spot_app/cores/common/widget/custom_container.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_text_field.dart';
 import 'package:nex_spot_app/cores/common/widget/primary_button.dart';
+import 'package:nex_spot_app/cores/constants/routes_constant.dart';
 import 'package:nex_spot_app/cores/utils/validator.dart';
 
 import 'terms_conditions.dart';
 
-class SignUpForm extends StatefulWidget {
-  const SignUpForm({super.key,
+class CreatePersonalAccountForm extends StatefulWidget {
+  const CreatePersonalAccountForm({super.key,
   required this.formKey,
   required this.onSuccess
   });
@@ -15,10 +19,10 @@ class SignUpForm extends StatefulWidget {
   final void Function() onSuccess;
 
   @override
-  State<SignUpForm> createState() => _SignUpFormState();
+  State<CreatePersonalAccountForm> createState() => _CreatePersonalAccountFormState();
 }
 
-class _SignUpFormState extends State<SignUpForm> {
+class _CreatePersonalAccountFormState extends State<CreatePersonalAccountForm> {
 
   final fullNameController = TextEditingController();
   final emailController = TextEditingController();
@@ -69,15 +73,20 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Form(
+    ColorScheme colorScheme = Theme.of(context).colorScheme;
+    return CustomContainer(
+      withMargin: false,
+      bottom:  Container(
+        margin: const EdgeInsets.only(bottom: 10),
+        child: PrimaryButton(title: 
+                loading ? 'Creating Account' :
+                'Continue', onPressed: () =>submit(), disabled: loading || !readyToSubmit, loading: loading),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 25),
+        child: Form(
           key: formKey,
-          child:  Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            
+          child:  ListView(
           children: [
             CustomTextField(
               controller: fullNameController,
@@ -94,6 +103,26 @@ class _SignUpFormState extends State<SignUpForm> {
               compareText(passwordController.text, confirmPasswordController.text, 'Confirm Password and Password do not match'),
                isSecured: true, keyboardType: TextInputType.visiblePassword, bottomMargin: 0),
             const TermsAndConditions(),
+            Container(
+              margin: const EdgeInsets.only(top: 20),
+              child: Center(
+                child: RichText(text:  
+                TextSpan(
+                   style: Theme.of(context).textTheme.bodyMedium,
+                  text: "Already have an account? ",
+                  children: [
+                  TextSpan(
+                    style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  color: colorScheme.primary,
+                ),
+                    text: "Sign In",
+                    recognizer: TapGestureRecognizer()..onTap = () => 
+                          Navigator.pushNamed(context, NamedRoutes.login)
+                  )
+                ]) )
+              ),
+            )
           ],
         ),
         onChanged: () {
@@ -105,11 +134,7 @@ class _SignUpFormState extends State<SignUpForm> {
           }
         },
         ),
-        PrimaryButton(title: 
-            loading ? 'Creating Account' :
-            'Continue', onPressed: () =>submit(), disabled: loading || !readyToSubmit, loading: loading),
-      ],
+      ),
     );
   }
 }
-

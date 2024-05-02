@@ -40,7 +40,7 @@ class UploadSection extends StatelessWidget {
         ),
       ),
       PrimaryButton(onPressed: () {
-        Navigator.pushNamed(context, '/success', arguments: const ScreenArgument("Account created Successfully!", 
+        Navigator.pushReplacementNamed(context, '/success', arguments: const ScreenArgument("Account created Successfully!", 
         "You can now continue using this awesome business solution") );
       }, title: 'Start Transacting', disabled: false, icon: const Icon(Icons.chevron_right, color: Colors.white) )
       ],

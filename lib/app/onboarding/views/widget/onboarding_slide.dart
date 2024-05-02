@@ -25,10 +25,13 @@ class OnboardingSlide extends StatelessWidget {
           margin: const EdgeInsets.only(top: 20, right: 15, left: 15),
           child:  Column(
             children: [
-              TextHeading(
-                text: text,
-                endText: endText,
-                subText: subText,
+              SizedBox(
+                height: 122,
+                child: TextHeading(
+                  text: text,
+                  endText: endText,
+                  subText: subText,
+                ),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 30),  
@@ -36,7 +39,7 @@ class OnboardingSlide extends StatelessWidget {
                     child: Container(
                       width: 260,
                       height: 260,
-                      color: Colors.black12,
+                      color: Colors.purple.shade50,
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: visualWidget,

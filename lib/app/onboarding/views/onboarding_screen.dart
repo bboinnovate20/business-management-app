@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:nex_spot_app/cores/common/custom_toast.dart';
+import 'package:nex_spot_app/cores/constants/routes_constant.dart';
 import 'package:rive/rive.dart';
 
 import 'package:nex_spot_app/cores/common/clamp_int.dart';
@@ -84,7 +86,7 @@ class _OnboardingState extends State<Onboarding>
 
   @override
   Widget build(BuildContext context) {
-    ColorScheme colorScheme = Theme.of(context).colorScheme;
+
     return   Scaffold(
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -140,14 +142,25 @@ class _OnboardingState extends State<Onboarding>
             ),
             
              Expanded(
-               child: Align(
-                alignment: Alignment.bottomCenter,
-                 child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                  child: AnimatedPrimaryButton(onPressed: (){}),
-                             ),
-               ),
-             )
+               child: Container(
+                
+                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 15.0),
+                      child: AnimatedPrimaryButton(onPressed: (){
+                        Navigator.pushNamed(context, NamedRoutes.register);
+                      }, title: "Open a new account"),
+                    ),
+                    AnimatedPrimaryButton(onPressed: (){
+                     Navigator.pushNamed(context, NamedRoutes.login);
+                    },  title: "Already have a new account? Sign In"),
+                  ],
+                ),),
+             ),
+             
           ],
         ),
       )

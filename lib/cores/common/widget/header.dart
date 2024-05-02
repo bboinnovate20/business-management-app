@@ -10,7 +10,7 @@ class CustomHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return  SizedBox(
-      width: MediaQuery.of(context).size.width,
+      
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
