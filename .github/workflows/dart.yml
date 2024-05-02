@@ -24,3 +24,7 @@ jobs:
           channel: any
           flutter-version: 3.x
       - run: flutter --version
+      - run: flutter pub get
+      - run: flutter doctor
+      - run: flutter test
+      
