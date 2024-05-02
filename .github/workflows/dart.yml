@@ -21,5 +21,6 @@ jobs:
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version-file: ../../pubspec.yaml # path to pubspec.yaml
+          channel: any
+          flutter-version-file: 3.x
       - run: flutter --version
