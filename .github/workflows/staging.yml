@@ -7,7 +7,7 @@ name: Flutter
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "staging" ]
 
 jobs:
   build:
