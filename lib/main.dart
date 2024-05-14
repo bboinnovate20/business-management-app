@@ -1,20 +1,29 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:nex_spot_app/app/onboarding/views/onboarding_screen.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nex_spot_app/app/auth/models/repositories/user_auth_repository.dart';
+import 'package:nex_spot_app/firebase_options.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+
+import 'package:nex_spot_app/app/auth/auth_controller.dart';
 import 'package:nex_spot_app/cores/routes/routes.dart';
 import 'package:nex_spot_app/cores/themes/themes.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'app/auth/views/signup_screen.dart';
+
 import 'cores/constants/routes_constant.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
           systemNavigationBarColor: Colors.white));
 
-  runApp(const MyApp());
+  await firebaseSetup();
+
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -42,5 +51,13 @@ class MyApp extends StatelessWidget {
 }
 
 
-
+firebaseSetup() async {
+    try {
+      return await Firebase.initializeApp(
+          options: DefaultFirebaseOptions.currentPlatform,
+      );
+    }catch(e) {
+      return false;
+    }
+}
 

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nex_spot_app/app/auth/auth_controller.dart';
 import 'package:nex_spot_app/app/auth/views/widget/setup_business_page.dart';
 import 'package:nex_spot_app/app/auth/views/widget/upload_section_page.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_container.dart';
@@ -6,18 +8,21 @@ import 'package:nex_spot_app/cores/common/widget/custom_container.dart';
 import 'widget/create_personal_account_page.dart';
 import 'widget/signup_indicator.dart';
 
-class SignUp extends StatefulWidget {
+class SignUp extends ConsumerStatefulWidget {
   const SignUp({super.key});
-
+  
+  // final UserAuthenticationController? authController;
+  
   @override
-  State<SignUp> createState() => _SignUpState();
+  ConsumerState<SignUp> createState() => _SignUpState();
 }
 
-class _SignUpState extends State<SignUp> with TickerProviderStateMixin{
+class _SignUpState extends ConsumerState<SignUp> with TickerProviderStateMixin{
 
   late PageController _pageViewController;
     final totalStage = 3;
     int currentStage = 0;
+    
 
 
   goToNextPage() {    
@@ -33,10 +38,16 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin{
     
     setState(() => currentStage = nextStage);
   }
-  
+   getPassedData(int stage) {
+    print(ModalRoute.of(context)!.settings.arguments);
+    // _pageViewController.jumpToPage(stage - 1);
+    // setState(() => currentStage = stage);
+  }
+
   @override
   void initState() {
     super.initState();
+    getPassedData(2);
     _pageViewController = PageController();
   }
   @override
@@ -66,7 +77,7 @@ class _SignUpState extends State<SignUp> with TickerProviderStateMixin{
                 controller: _pageViewController,
                 physics: const NeverScrollableScrollPhysics(),
               children:  [
-                CreatePersonalAccount(stage: 0, onCompletion: goToNextPage),
+                CreatePersonalAccount(stage: 0, onCompletion: goToNextPage, registerController: RegisterController(ref)),
                 SetupBusiness(stage: 1, onCompletion: goToNextPage),
                 UploadSection(stage: 2, onCompletion: goToNextPage),
               ]

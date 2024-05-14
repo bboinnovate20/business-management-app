@@ -18,9 +18,7 @@ class Onboarding extends StatefulWidget {
   State<Onboarding> createState() => _OnboardingState();
 }
 
-class _OnboardingState extends State<Onboarding> 
-   with TickerProviderStateMixin {
-
+class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
   late PageController _pageViewController;
   late TabController _tabController;
   int _currentPageIndex = 0;
@@ -67,6 +65,7 @@ class _OnboardingState extends State<Onboarding>
      return _timer;
   }
 
+
    @override
   void initState() {
     super.initState();
@@ -77,26 +76,37 @@ class _OnboardingState extends State<Onboarding>
 
   @override
   void dispose() {
-    super.dispose();
     _pageViewController.dispose();
     _tabController.dispose();
-    
+    _timer.cancel();
+    super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
-
     return   Scaffold(
+      bottomNavigationBar: Container(
+        height: 150,
+        margin: const EdgeInsets.symmetric(horizontal: 15),
+        child: Column(
+          children: [
+            AnimatedPrimaryButton(
+              onPressed: () => Navigator.pushReplacementNamed(context, NamedRoutes.register), 
+            title: "Sign Up" ),
+            Container(height: 15),
+            AnimatedPrimaryButton(
+              outline: true,
+              onPressed: () => Navigator.pushReplacementNamed(context, NamedRoutes.login), 
+            title: "Already Sign up? Login in" )
+          ],
+        ),),       
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
-        child:  Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
           children: [
-            
             const ImageHeading(),
             SizedBox(
-              height: 500,
+              height: MediaQuery.of(context).size.height /1.7,
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
@@ -130,7 +140,7 @@ class _OnboardingState extends State<Onboarding>
                     ),
                   ]
                 ),
-              
+            
                 PageIndicator(
                     tabController: _tabController, 
                     currentPageIndex: _currentPageIndex, 
@@ -141,29 +151,17 @@ class _OnboardingState extends State<Onboarding>
               ),
             ),
             
-             Expanded(
-               child: Container(
+            //  Expanded(
+            //    child: Container(
                 
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 15.0),
-                      child: AnimatedPrimaryButton(onPressed: (){
-                        Navigator.pushNamed(context, NamedRoutes.register);
-                      }, title: "Open a new account"),
-                    ),
-                    AnimatedPrimaryButton(onPressed: (){
-                     Navigator.pushNamed(context, NamedRoutes.login);
-                    },  title: "Already have a new account? Sign In"),
-                  ],
-                ),),
-             ),
+            //     margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            //     child: ,),
+            //  ),
              
           ],
         ),
       )
+      
     );
   }
   

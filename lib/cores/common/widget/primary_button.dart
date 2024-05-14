@@ -161,7 +161,8 @@ class AnimatedPrimaryButton extends StatefulWidget  {
     this.width = 400,
     this.height = 60,
     this.disabled = false,
-    this.title = "Continue"
+    this.title = "Continue",
+    this.outline = false
   });
 
   final void Function() onPressed;
@@ -170,6 +171,7 @@ class AnimatedPrimaryButton extends StatefulWidget  {
   final bool disabled;
   final double height;
   final String title;
+  final bool outline;
 
   @override
   State<AnimatedPrimaryButton> createState() => _AnimatedPrimaryButtonState();
@@ -214,10 +216,12 @@ class _AnimatedPrimaryButtonState extends State<AnimatedPrimaryButton> with Tick
                   style: ButtonStyle(
                   padding: const MaterialStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: 15)),
                   backgroundColor: MaterialStateProperty.resolveWith((states) => 
-                  states.contains(MaterialState.pressed) ?colorScheme.secondary :colorScheme.primary),
+                  states.contains(MaterialState.pressed) ?
+                      colorScheme.secondary : widget.outline ? Colors.white : colorScheme.primary),
                   
                   // MaterialStatePropertyAll(colorScheme.primary),
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                    side: widget.outline ?  BorderSide(width: 1.0, color: colorScheme.primary) : BorderSide.none,
                     borderRadius: BorderRadius.circular(lerp(
                       _opacity.value, 0.0, 1.0, 100, 10
                     ))))
@@ -227,10 +231,8 @@ class _AnimatedPrimaryButtonState extends State<AnimatedPrimaryButton> with Tick
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-          
                     Text(widget.title, 
-                      style: const TextStyle(color: Colors.white, fontSize: 16)),
-                    
+                      style: TextStyle(color: widget.outline ? colorScheme.primary : Colors.white, fontSize: 16)),
                       Transform.translate(
                         offset: Offset(
                           lerp(_opacity.value, 0.0, 1.0, 10,0)

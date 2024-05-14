@@ -88,7 +88,7 @@ class _SignUpFormState extends State<SetupBusinessForm> {
         child: Form(
           key: formKey,
           child:  ListView(
-       
+            padding: const EdgeInsets.only(top: 25),
           children: [
             CustomTextField(
               controller: businessNameController,

@@ -22,7 +22,7 @@ class OnboardingSlide extends StatelessWidget {
       children: [
         
         Container(
-          margin: const EdgeInsets.only(top: 20, right: 15, left: 15),
+          margin: const EdgeInsets.only(right: 15, left: 15),
           child:  Column(
             children: [
               SizedBox(

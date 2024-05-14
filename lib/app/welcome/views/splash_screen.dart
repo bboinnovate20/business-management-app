@@ -1,31 +1,31 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:nex_spot_app/app/welcome/splash_screen_controller.dart';
 import 'package:nex_spot_app/cores/common/preload.dart';
-import 'package:nex_spot_app/cores/constants/routes_constant.dart';
+
 import 'package:rive/rive.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashScreen extends ConsumerStatefulWidget {
+  const SplashScreen({super.key, required this.splashScreenController});
+
+  final SplashScreenController splashScreenController;
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SplashScreenState();
 }
 
-
-
-
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends ConsumerState<SplashScreen> {
   
-  moveToNextDashBoard() {
-    //
-    Future.delayed(const Duration(seconds: 4), () => Navigator.pushNamed(context, NamedRoutes.onboarding));
+  moveToNextScreen() {
+    widget.splashScreenController.initiateAuthentication(ref, context);
   }
 
   @override
   void initState() {
     super.initState();
-    moveToNextDashBoard();
     preload();
+    moveToNextScreen();
   }
 
 
@@ -37,7 +37,6 @@ class _SplashScreenState extends State<SplashScreen> {
                   width: 200,
                   height: 200,
                   child: Center(
-                          // child: Text("hello"),
                       child: RiveAnimation.asset('assets/animations/logo.riv'),
                   ),),
       ),

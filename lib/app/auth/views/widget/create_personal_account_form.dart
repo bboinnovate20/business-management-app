@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nex_spot_app/app/auth/auth_controller.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_container.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_text_field.dart';
 import 'package:nex_spot_app/cores/common/widget/primary_button.dart';
@@ -12,11 +13,13 @@ import 'terms_conditions.dart';
 class CreatePersonalAccountForm extends StatefulWidget {
   const CreatePersonalAccountForm({super.key,
   required this.formKey,
-  required this.onSuccess
+  required this.onSuccess,
+  this.registerController
   });
 
   final  GlobalKey<FormState> formKey;
   final void Function() onSuccess;
+  final RegisterController? registerController;
 
   @override
   State<CreatePersonalAccountForm> createState() => _CreatePersonalAccountFormState();
@@ -60,7 +63,9 @@ class _CreatePersonalAccountFormState extends State<CreatePersonalAccountForm> {
       setState(() => loading = true);
       await Future.delayed(const Duration(seconds: 1), () => setState(() => loading = false));
       debugPrint("readyToSubmit to server");
-      //
+      print(formKey.currentState);
+      
+      // widget.registerController(formKey.currentState);
       widget.onSuccess();
     }
   }
@@ -82,58 +87,56 @@ class _CreatePersonalAccountFormState extends State<CreatePersonalAccountForm> {
                 loading ? 'Creating Account' :
                 'Continue', onPressed: () =>submit(), disabled: loading || !readyToSubmit, loading: loading),
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 25),
-        child: Form(
-          key: formKey,
-          child:  ListView(
-          children: [
-            CustomTextField(
-              controller: fullNameController,
-              label: 'Full Name *', validator: (value) => isValidTwoWordName(value!), hintText: 'Surname and Last Name'),
-            CustomTextField(
-              controller: emailController,
-              label: 'Email Address *', validator: (value) => isValidEmail(value!), keyboardType: TextInputType.emailAddress, ),
-            CustomTextField(
-              controller: passwordController,
-              label: 'Password *', validator: (value) => isValidPassword(value!), isSecured: true, keyboardType: TextInputType.visiblePassword),
-            CustomTextField(
-              controller: confirmPasswordController,
-              label: 'Confirm Password *', validator: (value) => 
-              compareText(passwordController.text, confirmPasswordController.text, 'Confirm Password and Password do not match'),
-               isSecured: true, keyboardType: TextInputType.visiblePassword, bottomMargin: 0),
-            const TermsAndConditions(),
-            Container(
-              margin: const EdgeInsets.only(top: 20),
-              child: Center(
-                child: RichText(text:  
+      child: Form(
+        key: formKey,
+        child:  ListView(
+         padding: const EdgeInsets.only(top: 25),
+        children: [
+          CustomTextField(
+            controller: fullNameController,
+            label: 'Full Name *', validator: (value) => isValidTwoWordName(value!), hintText: 'Surname and Last Name'),
+          CustomTextField(
+            controller: emailController,
+            label: 'Email Address *', validator: (value) => isValidEmail(value!), keyboardType: TextInputType.emailAddress, ),
+          CustomTextField(
+            controller: passwordController,
+            label: 'Password *', validator: (value) => isValidPassword(value!), isSecured: true, keyboardType: TextInputType.visiblePassword),
+          CustomTextField(
+            controller: confirmPasswordController,
+            label: 'Confirm Password *', validator: (value) => 
+            compareText(passwordController.text, confirmPasswordController.text, 'Confirm Password and Password do not match'),
+             isSecured: true, keyboardType: TextInputType.visiblePassword, bottomMargin: 0),
+          const TermsAndConditions(),
+          Container(
+            margin: const EdgeInsets.only(top: 20),
+            child: Center(
+              child: RichText(text:  
+              TextSpan(
+                 style: Theme.of(context).textTheme.bodyMedium,
+                text: "Already have an account? ",
+                children: [
                 TextSpan(
-                   style: Theme.of(context).textTheme.bodyMedium,
-                  text: "Already have an account? ",
-                  children: [
-                  TextSpan(
-                    style: TextStyle(
-                  decoration: TextDecoration.underline,
-                  color: colorScheme.primary,
-                ),
-                    text: "Sign In",
-                    recognizer: TapGestureRecognizer()..onTap = () => 
-                          Navigator.pushNamed(context, NamedRoutes.login)
-                  )
-                ]) )
+                  style: TextStyle(
+                decoration: TextDecoration.underline,
+                color: colorScheme.primary,
               ),
-            )
-          ],
-        ),
-        onChanged: () {
-          if(fieldsNotEmpty()) {
-            setState(() =>readyToSubmit = true);
-          }
-          else {
-            if(readyToSubmit != false){setState(() =>readyToSubmit = false);}
-          }
-        },
-        ),
+                  text: "Sign In",
+                  recognizer: TapGestureRecognizer()..onTap = () => 
+                        Navigator.pushNamed(context, NamedRoutes.login)
+                )
+              ]) )
+            ),
+          )
+        ],
+      ),
+      onChanged: () {
+        if(fieldsNotEmpty()) {
+          setState(() =>readyToSubmit = true);
+        }
+        else {
+          if(readyToSubmit != false){setState(() =>readyToSubmit = false);}
+        }
+      },
       ),
     );
   }

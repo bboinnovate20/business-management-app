@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "912217817262",
+    "project_id": "nex-spot-app",
+    "storage_bucket": "nex-spot-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912217817262:android:bbe2ea1442b82a75acad3f",
+        "android_client_info": {
+          "package_name": "com.bboitech.nex_spot_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7vVwh2ePFxBv3j7M2L8REoL-bsq5yoT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912217817262:android:ad35ccd443d45bf2acad3f",
+        "android_client_info": {
+          "package_name": "com.example.nex_spot_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7vVwh2ePFxBv3j7M2L8REoL-bsq5yoT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
