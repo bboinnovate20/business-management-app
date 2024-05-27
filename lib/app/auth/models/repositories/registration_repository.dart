@@ -1,4 +1,3 @@
-import 'package:nex_spot_app/app/auth/models/data/business.dart';
 import 'package:nex_spot_app/app/auth/models/data/register.dart';
 import 'package:nex_spot_app/app/auth/models/data_sources/registration_remote_data_source.dart';
 import 'package:nex_spot_app/cores/common/returned_status.dart';
@@ -14,9 +13,9 @@ class RegistrationRepository {
         return response;
     }
 
-    registerUserBusiness(UserBusinessDetails userBusinessDetails){
+    // registerUserBusiness(UserBusinessDetails userBusinessDetails){
 
-    }
+    // }
 
     uploadBusinessLogo(int businessId) {
 

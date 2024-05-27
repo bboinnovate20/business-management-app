@@ -7,9 +7,7 @@ import 'package:nex_spot_app/cores/common/preload.dart';
 import 'package:rive/rive.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
-  const SplashScreen({super.key, required this.splashScreenController});
-
-  final SplashScreenController splashScreenController;
+  const SplashScreen({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SplashScreenState();
@@ -18,7 +16,9 @@ class SplashScreen extends ConsumerStatefulWidget {
 class _SplashScreenState extends ConsumerState<SplashScreen> {
   
   moveToNextScreen() {
-    widget.splashScreenController.initiateAuthentication(ref, context);
+    final splashScreenController = SplashScreenController(ref);
+    splashScreenController.initiateAuthentication(context);
+    
   }
 
   @override
@@ -30,7 +30,10 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build( BuildContext context) {
+
+
+
     return const Scaffold(
       body: Center(
         child: SizedBox(

@@ -4,12 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nex_spot_app/app/auth/models/repositories/user_auth_repository.dart';
 import 'package:nex_spot_app/firebase_options.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 
-import 'package:nex_spot_app/app/auth/auth_controller.dart';
 import 'package:nex_spot_app/cores/routes/routes.dart';
 import 'package:nex_spot_app/cores/themes/themes.dart';
 

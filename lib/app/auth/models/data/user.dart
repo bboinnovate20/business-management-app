@@ -1,5 +1,7 @@
 class UserState {
-  const UserState({required this.firstName, required this.lastName, this.businessInformation, this.isAuthenticated = false});
+  const UserState({required this.firstName, required this.lastName,
+    
+   this.businessInformation, this.isAuthenticated = false});
   final bool isAuthenticated;
   final String firstName;
   final String lastName;

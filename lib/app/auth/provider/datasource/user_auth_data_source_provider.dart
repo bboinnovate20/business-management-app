@@ -9,9 +9,11 @@ part 'user_auth_data_source_provider.g.dart';
 
 @riverpod
 AuthRemoteDataSource authRemoteDataSource(AuthRemoteDataSourceRef ref) {
-  return AuthRemoteDataSource();
-}
+  final loginDataSourceController = ref.watch(loginRemoteDataSourceProvider);
+  final registrationDataSourceController = ref.watch(registrationRemoteDataSourceProvider);
 
+  return AuthRemoteDataSource(loginDataSourceController, registrationDataSourceController);
+}
 
 @riverpod
 RegistrationRemoteDataSource registrationRemoteDataSource(RegistrationRemoteDataSourceRef ref) {
@@ -22,12 +24,3 @@ RegistrationRemoteDataSource registrationRemoteDataSource(RegistrationRemoteData
 LoginRemoteDataSource loginRemoteDataSource(LoginRemoteDataSourceRef ref) {
   return LoginRemoteDataSource();
 }
-
-
-
-
-
-// UserRepository userRepository() {
-//   final loginRepo
-//   return UserRepository(loginRepository, registrationRepository)
-// }

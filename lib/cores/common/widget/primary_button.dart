@@ -33,13 +33,13 @@ class PrimaryButton extends StatelessWidget {
         
         style: ButtonStyle(
           
-          padding: const MaterialStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: 15)),
+          padding: const WidgetStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: 15)),
           
-          backgroundColor: disabled ? const MaterialStatePropertyAll(Colors.grey) : 
-                MaterialStateProperty.resolveWith((states) => states.contains(MaterialState.pressed) ?
+          backgroundColor: disabled ? const WidgetStatePropertyAll(Colors.grey) : 
+                WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.pressed) ?
                 colorScheme.secondary :colorScheme.primary),
 
-          shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10)))
          ),
         onPressed: disabled ? (){} : onPressed, 
@@ -106,26 +106,26 @@ class CustomButton extends StatelessWidget {
         //outline 
         ButtonStyle(
           
-          padding: const MaterialStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: 15)),
+          padding: const WidgetStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: 15)),
           
-          backgroundColor: disabled ? const MaterialStatePropertyAll(Colors.grey) : 
-                MaterialStateProperty.resolveWith((states) => states.contains(MaterialState.pressed) ?
+          backgroundColor: disabled ? const WidgetStatePropertyAll(Colors.grey) : 
+                WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.pressed) ?
                 Colors.grey :Colors.white),
           
-          shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
             side: const BorderSide(width: 1),
             borderRadius: BorderRadius.circular(10)))
          ):
         
         ButtonStyle(
           
-          padding: const MaterialStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: 15)),
+          padding: const WidgetStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: 15)),
           
-          backgroundColor: disabled ? const MaterialStatePropertyAll(Colors.grey) : 
-                MaterialStateProperty.resolveWith((states) => states.contains(MaterialState.pressed) ?
+          backgroundColor: disabled ? const WidgetStatePropertyAll(Colors.grey) : 
+                WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.pressed) ?
                 colorScheme.secondary : bgColor ?? colorScheme.primary),
 
-          shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+          shape: WidgetStatePropertyAll(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10)))
          ),
         onPressed: disabled ? (){} : onPressed, 
@@ -214,13 +214,13 @@ class _AnimatedPrimaryButtonState extends State<AnimatedPrimaryButton> with Tick
               opacity:_opacity.value,
               child: ElevatedButton(
                   style: ButtonStyle(
-                  padding: const MaterialStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: 15)),
-                  backgroundColor: MaterialStateProperty.resolveWith((states) => 
-                  states.contains(MaterialState.pressed) ?
+                  padding: const WidgetStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: 15)),
+                  backgroundColor: WidgetStateProperty.resolveWith((states) => 
+                  states.contains(WidgetState.pressed) ?
                       colorScheme.secondary : widget.outline ? Colors.white : colorScheme.primary),
                   
                   // MaterialStatePropertyAll(colorScheme.primary),
-                  shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                     side: widget.outline ?  BorderSide(width: 1.0, color: colorScheme.primary) : BorderSide.none,
                     borderRadius: BorderRadius.circular(lerp(
                       _opacity.value, 0.0, 1.0, 100, 10

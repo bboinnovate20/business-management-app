@@ -3,9 +3,9 @@
 import 'package:nex_spot_app/app/auth/models/repositories/login_repository.dart';
 import 'package:nex_spot_app/app/auth/models/repositories/registration_repository.dart';
 
-class UserRepository {
+class UserAuthRepository {
 
-  const UserRepository(this.loginRepository, this.registrationRepository);
+  const UserAuthRepository(this.loginRepository, this.registrationRepository);
 
   final LoginRepository loginRepository;
   final RegistrationRepository registrationRepository;

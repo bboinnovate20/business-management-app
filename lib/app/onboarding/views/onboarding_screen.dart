@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:nex_spot_app/cores/common/custom_toast.dart';
 import 'package:nex_spot_app/cores/constants/routes_constant.dart';
 import 'package:rive/rive.dart';
 

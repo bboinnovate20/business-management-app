@@ -13,27 +13,50 @@ class CustomToast {
   
 
   showErrorMessage(String message) {
-    fToast.showToast(child: CustomErrorToastView(toastMessage: message),
-     toastDuration: const Duration(seconds: 2),
+    fToast.showToast(child: CustomToastView(toastMessage: message, isError: true),
+    fadeDuration:const Duration(milliseconds: 100),
+     toastDuration: const Duration(seconds: 4),
         positionedToastBuilder: (context, child) {
-          return Positioned(
-            top: 40.0,
-            left: 5,
-            right: 5,
-            child: child,
-          );
+          return _ToastWidget(child: child);
         });
   }
 
   showSuccessMessage(String message) {
-    fToast.showToast(child: CustomSuccessToastView(toastMessage: message),
-     toastDuration: const Duration(seconds: 2),
+    fToast.showToast(child: CustomToastView(toastMessage: message),
+      fadeDuration:const Duration(milliseconds: 100),
+     toastDuration: const Duration(seconds: 4),
         positionedToastBuilder: (context, child) {
-          return Positioned(
-            top: 40.0,
-            left: 5.0,
-            child: child,
-          );
+          return _ToastWidget(child: child);
         });
+  }
+}
+
+
+class _ToastWidget extends StatefulWidget {
+  const _ToastWidget({super.key, required this.child});
+
+  final Widget child;
+  @override
+  State<_ToastWidget> createState() => __ToastWidgetState();
+}
+
+class __ToastWidgetState extends State<_ToastWidget> {
+
+  double top = -20;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 100), () => setState(() => top = 40));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedPositioned(
+            duration: const Duration(milliseconds: 100),
+            top: top,
+            left: 5.0,
+            child: widget.child,
+          );
   }
 }

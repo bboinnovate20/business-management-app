@@ -22,7 +22,7 @@ final loginRepositoryProvider = AutoDisposeProvider<LoginRepository>.internal(
 
 typedef LoginRepositoryRef = AutoDisposeProviderRef<LoginRepository>;
 String _$registerRepositoryHash() =>
-    r'5c71842fa94cbe7fc2b0718486d975fe8b5ee8fc';
+    r'f0720eeb63eb5190b79926f8b81f81c981ece22a';
 
 /// See also [registerRepository].
 @ProviderFor(registerRepository)
@@ -38,23 +38,5 @@ final registerRepositoryProvider =
 );
 
 typedef RegisterRepositoryRef = AutoDisposeProviderRef<RegistrationRepository>;
-String _$userAuthenticationRepositoryHash() =>
-    r'40835285a0995c2b0ee83e4af8b8ba889aa58410';
-
-/// See also [userAuthenticationRepository].
-@ProviderFor(userAuthenticationRepository)
-final userAuthenticationRepositoryProvider =
-    AutoDisposeProvider<UserAuthenticationRepository>.internal(
-  userAuthenticationRepository,
-  name: r'userAuthenticationRepositoryProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$userAuthenticationRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef UserAuthenticationRepositoryRef
-    = AutoDisposeProviderRef<UserAuthenticationRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

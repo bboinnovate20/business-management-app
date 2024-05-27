@@ -5,24 +5,7 @@ import 'package:nex_spot_app/cores/common/returned_status.dart';
 
 class RegistrationRemoteDataSource {
   
-    registerUser(UserPersonalData userPersonAccountDetail) async {
-    
-    }
-
-    uploadUserLogo() {
-      
-    }
-
-    uploadUserSignature() {
-      
-    }
-}
-
-
-
-class FirebaseRegistrationDataSource implements RegistrationRemoteDataSource {
-  @override
-  Future<ReturnedStatus> registerUser(UserPersonalData userPersonAccountDetail) async {
+    Future<ReturnedStatus> registerUser(UserPersonalData userPersonAccountDetail) async {
       try {
           final credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: userPersonAccountDetail.email,
@@ -43,18 +26,19 @@ class FirebaseRegistrationDataSource implements RegistrationRemoteDataSource {
             return ReturnedStatus.returnedStatus(message: 'Unknown error', success: false);
         }
       return ReturnedStatus.returnedStatus(message: 'Unknown error', success: false);
-    
-  }
+    }
+      
 
-  @override
-  uploadUserLogo() {
-    
-    throw UnimplementedError();
-  }
+    registerUserBusiness(int userId, Map<String, dynamic> userLoginData) {
+      
+    }
 
-  @override
-  uploadUserSignature() {
-    throw UnimplementedError();
-  }
+    uploadUserLogo() {
+      
+    }
 
+    uploadUserSignature() {
+      
+    }
 }
+
