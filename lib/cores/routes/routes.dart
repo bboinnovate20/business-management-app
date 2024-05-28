@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nex_spot_app/app/auth/auth_controller.dart';
-import 'package:nex_spot_app/app/auth/models/repositories/user_auth_repository.dart';
 import 'package:nex_spot_app/app/auth/views/login_screen.dart';
-
 import 'package:nex_spot_app/app/auth/views/signup_screen.dart';
 import 'package:nex_spot_app/app/onboarding/views/onboarding_screen.dart';
 import 'package:nex_spot_app/app/welcome/splash_screen_controller.dart';

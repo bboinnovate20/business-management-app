@@ -5,6 +5,7 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fake_cloud_firestore/fake_cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,36 +13,28 @@ import 'package:nex_spot_app/app/business/models/data/business.dart';
 import 'package:nex_spot_app/app/business/models/data_sources/business_remote_data_source.dart';
 import 'package:nex_spot_app/cores/common/returned_status.dart';
 import 'package:nex_spot_app/firebase_options.dart';
-import 'package:nex_spot_app/main.dart';
 
 void main() {
-  testWidgets('Register User', (tester) async {
+  test('Register User Business', () async {
 
-        debugPrint('initialized binding');
-
-        await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-        WidgetsFlutterBinding.ensureInitialized();
-
-        debugPrint("initialize firebase");
-
-        // const businessAddress = UserBusinessAddress('48, Freeman Street', 'Lagos', 'Nigeria');
+        const businessAddress = UserBusinessAddress('48, Freeman Street', 'Lagos', 'Nigeria');
         
-        // const userBusinessDetails = UserBusinessDetails('imusa229@gmail.com', 'Albarika Computer Center', 
-        //                                       businessAddress, 'catering-services','services', '4311100RC');
-        // debugPrint("creating an instance");
-        // final dataInstance = FirebaseFirestore.instance;
-        // debugPrint("instance created ");
+        const userBusinessDetails = UserBusinessDetails('imusa229@gmail.com', 'Albarika Computer Center', 
+                                              businessAddress, 'catering-services','services', '4311100RC');
+        debugPrint("creating an instance");
+        final dataInstance = FakeFirebaseFirestore();
+        debugPrint("instance created ");
 
-        // debugPrint("registering user");
-        // final registerUser = UserBusinessRemoteDataSource(database: dataInstance);
+        debugPrint("registering user");
+        final registerUser = UserBusinessRemoteDataSource( userId: 1, database: dataInstance);
 
         // debugPrint("response returned");
-        // final ReturnedStatus response = await registerUser.registerUserBusiness(userBusinessDetails);
+        final ReturnedStatus response = await registerUser.registerUserBusiness(userBusinessDetails);
 
-        // debugPrint(response.toString());
+        print("print debugging");
+        debugPrint(response.message);
+        print(response.otherData);
         
-        // expect(true, response.success);
-        expect(true, true);
+        expect(true, response.success);
   });
 }

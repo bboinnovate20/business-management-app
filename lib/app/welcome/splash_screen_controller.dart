@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nex_spot_app/app/auth/models/data/user.dart';
-import 'package:nex_spot_app/app/auth/models/repositories/user_auth_repository.dart';
 import 'package:nex_spot_app/app/auth/provider/user_state_notifier.dart';
 import 'package:nex_spot_app/cores/common/custom_toast.dart';
 import 'package:nex_spot_app/cores/constants/message.dart';

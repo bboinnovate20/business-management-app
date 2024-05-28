@@ -63,10 +63,13 @@ class UserBusinessRemoteDataSource {
     Future<ReturnedStatus> registerBusiness(UserBusinessDetails businessDetails) async {
       try {
           final registerBusinessResponse  = await database.collection('businesses').add(businessDetails.toJson());
+          final response = await registerBusinessResponse.get();
+          final businessData = response.data();
+
           return ReturnedStatus.returnedStatusOther(
             message: 'Successfully register Business',
             success: true,
-            otherData: {'businessId': registerBusinessResponse.id, 'businessInfo': registerBusinessResponse.get()}
+            otherData: {'businessId': registerBusinessResponse.id, 'businessInfo': businessData}
           );
       } catch (e) {
         unknownErrorThrow();
