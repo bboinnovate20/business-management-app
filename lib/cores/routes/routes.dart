@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nex_spot_app/app/auth/auth_controller.dart';
 import 'package:nex_spot_app/app/auth/views/login_screen.dart';
 import 'package:nex_spot_app/app/auth/views/signup_screen.dart';
@@ -44,4 +45,34 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   }
   
   return null;
+}
+
+
+GoRouter goRouter() {
+  final router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const SplashScreen(),
+    ),
+    GoRoute(
+      path: NamedRoutes.onboarding,
+      builder: (context, state) => const Onboarding(),
+    ),
+    GoRoute(
+      path: NamedRoutes.register,
+      builder: (context, state) => SignUp(stage: state.extra as ScreenArgument?),
+    ),
+    GoRoute(
+      path:  NamedRoutes.login,
+      builder: (context, state) => const Login(),
+    ),
+    GoRoute(
+      path:  NamedRoutes.success,
+      builder: (context, state) => Success(arguments: state.extra as ScreenArgument),
+    ),
+  ],
+);
+
+return router;
 }

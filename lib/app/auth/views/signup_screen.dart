@@ -47,6 +47,7 @@ class _SignUpState extends ConsumerState<SignUp> {
   @override
   void initState() {
     _pageViewController = PageController(initialPage: widget.stage?.others?['stage'] ?? 0);
+    
     setState(() => currentStage = widget.stage?.others?['stage'] ?? 0);
     super.initState();
   }

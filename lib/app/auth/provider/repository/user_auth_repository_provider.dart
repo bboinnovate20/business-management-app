@@ -1,5 +1,6 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nex_spot_app/app/auth/models/data_sources/registration_remote_data_source.dart';
 import 'package:nex_spot_app/app/auth/models/repositories/login_repository.dart';
 import 'package:nex_spot_app/app/auth/models/repositories/registration_repository.dart';
@@ -15,7 +16,8 @@ LoginRepository loginRepository(LoginRepositoryRef ref) {
 
 @riverpod
 RegistrationRepository registerRepository(RegisterRepositoryRef ref) {
-  final registerRemoteDataSource = FirebaseRegistrationDataSource();
+  final firebaseAuthInstance = FirebaseAuth.instance;
+  final registerRemoteDataSource = FirebaseRegistrationDataSource(instance: firebaseAuthInstance);
   return RegistrationRepository(registerRemoteDataSource);
 }
 

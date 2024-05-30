@@ -9,7 +9,7 @@ class RegistrationRepository {
     final RegistrationRemoteDataSource registrationRemoteDataSource; 
     
     Future<ReturnedStatus> registerUser(UserPersonalData userLogin) async {
-        final ReturnedStatus response = await registrationRemoteDataSource.registerUser(userLogin);
+        ReturnedStatus response = await registrationRemoteDataSource.registerUser(userLogin);
         return response;
     }
 

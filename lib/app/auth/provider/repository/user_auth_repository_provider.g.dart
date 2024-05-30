@@ -22,7 +22,7 @@ final loginRepositoryProvider = AutoDisposeProvider<LoginRepository>.internal(
 
 typedef LoginRepositoryRef = AutoDisposeProviderRef<LoginRepository>;
 String _$registerRepositoryHash() =>
-    r'f0720eeb63eb5190b79926f8b81f81c981ece22a';
+    r'ed72e67950889b53c231a037df2744cf4cd5ea3f';
 
 /// See also [registerRepository].
 @ProviderFor(registerRepository)

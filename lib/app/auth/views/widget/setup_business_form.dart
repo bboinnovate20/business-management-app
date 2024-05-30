@@ -1,11 +1,18 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nex_spot_app/app/auth/auth_controller.dart';
+import 'package:nex_spot_app/app/auth/provider/user_state_notifier.dart';
+import 'package:nex_spot_app/app/business/models/data/business.dart';
+import 'package:nex_spot_app/cores/common/custom_toast.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_container.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_text_field.dart';
 import 'package:nex_spot_app/cores/common/widget/primary_button.dart';
 import 'package:nex_spot_app/cores/utils/validator.dart';
 
 
-class SetupBusinessForm extends StatefulWidget {
+class SetupBusinessForm extends ConsumerStatefulWidget {
   const SetupBusinessForm({super.key,
   required this.formKey,
   required this.onSuccess
@@ -15,16 +22,17 @@ class SetupBusinessForm extends StatefulWidget {
   final void Function() onSuccess;
 
   @override
-  State<SetupBusinessForm> createState() => _SignUpFormState();
+  ConsumerState<SetupBusinessForm> createState() => _SignUpFormState();
 }
 
-class _SignUpFormState extends State<SetupBusinessForm> {
+class _SignUpFormState extends ConsumerState<SetupBusinessForm> {
 
   final businessNameController = TextEditingController();
   final rcBusinessController = TextEditingController();
   final businessAddressController = TextEditingController();
   int? stateController;
   int? businessCategoryController;
+  int? businessRoleController;
 
   bool readyToSubmit = false;
   bool loading = false;
@@ -52,15 +60,31 @@ class _SignUpFormState extends State<SetupBusinessForm> {
     super.initState();
   }
 
-  submit() {
+  submit(BuildContext context) async {
     if(formKey.currentState!.validate()){
-      //submit the form
+      setState(() => loading = true);
 
-      // setState(() => loading = true);
-      // delay = Future.delayed(const Duration(seconds: 1), () => setState(() => loading = false));
-      debugPrint("readyToSubmit to server");
-      //
-      widget.onSuccess();
+      RegisterController register = RegisterController(ref);
+      final UserBusinessAddress userBusinessAddress = UserBusinessAddress(
+        street: businessAddressController.text, state: stateController.toString(), country: 'Nigeria');
+
+      final UserBusinessDetails userBusinessDetails = UserBusinessDetails(
+        userId: ref.read(userStateNotifierProvider).email,
+        businessName:  businessNameController.text,
+        businessAddress: userBusinessAddress,
+        businessCategory: businessCategoryController.toString(),
+        businessRCNumber: rcBusinessController.text,
+        role: businessRoleController.toString());
+
+      final response = await register.registerBusiness(userBusinessDetails);
+
+      if(response.success) {
+        CustomToast(Navigator.of(context)).showSuccessMessage(response.message);
+        widget.onSuccess();
+      }
+      else {
+        CustomToast(Navigator.of(context)).showErrorMessage(response.message);
+      }
     }
   }
 
@@ -77,9 +101,13 @@ class _SignUpFormState extends State<SetupBusinessForm> {
       withMargin: false,
       bottom:  Container(
         margin: const EdgeInsets.only(bottom: 10),
-        child: PrimaryButton(title: 
-                loading ? 'Creating Business Account' :
-                'Continue', onPressed: () =>submit(), disabled: loading || !readyToSubmit, loading: loading),
+        child: Builder(
+          builder: (context) {
+            return PrimaryButton(title: 
+                    loading ? 'Creating Business Account' :
+                    'Continue', onPressed: () =>submit(context), disabled: loading || !readyToSubmit, loading: loading);
+          }
+        ),
       ),
       child: Padding(
       
@@ -132,6 +160,19 @@ class _SignUpFormState extends State<SetupBusinessForm> {
                 }
               ],
               onChangedValue: (value) { setState(() => stateController = value);},),
+               CustomSelectionField(
+              label: 'Role',
+              options: const [
+                {
+                  'id': 1,
+                  'name': 'Vendor'
+                },
+                {
+                  'id': 2,
+                  'name': 'Service'
+                }
+              ],
+              onChangedValue: (value) { print(value); setState(() => businessRoleController = value);},),
                   
           ],
                   ),

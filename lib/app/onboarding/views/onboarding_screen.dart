@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nex_spot_app/cores/constants/routes_constant.dart';
 import 'package:rive/rive.dart';
 
@@ -90,12 +91,12 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
         child: Column(
           children: [
             AnimatedPrimaryButton(
-              onPressed: () => Navigator.pushReplacementNamed(context, NamedRoutes.register), 
+              onPressed: () => context.go(NamedRoutes.register), 
             title: "Sign Up" ),
             Container(height: 15),
             AnimatedPrimaryButton(
               outline: true,
-              onPressed: () => Navigator.pushReplacementNamed(context, NamedRoutes.login), 
+              onPressed: () => context.go(NamedRoutes.login), 
             title: "Already Sign up? Login in" )
           ],
         ),),       

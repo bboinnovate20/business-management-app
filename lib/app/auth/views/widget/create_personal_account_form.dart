@@ -62,8 +62,6 @@ class _CreatePersonalAccountFormState extends State<CreatePersonalAccountForm> {
     if(formKey.currentState!.validate()){
       //submit the form
       setState(() => loading = true);
-      await Future.delayed(const Duration(seconds: 1), () => setState(() => loading = false));
-      debugPrint("readyToSubmit to server");
       formKey.currentState?.save();
       
       final Map<String,String> data = {
@@ -74,6 +72,7 @@ class _CreatePersonalAccountFormState extends State<CreatePersonalAccountForm> {
       };
 
       final result = await widget.registerController!.registerUser(data);
+      
       if(result.success) {
         // ignore: use_build_context_synchronously
         CustomToast(Navigator.of(context)).showSuccessMessage(result.message);
@@ -83,6 +82,7 @@ class _CreatePersonalAccountFormState extends State<CreatePersonalAccountForm> {
         // ignore: use_build_context_synchronously
         CustomToast(Navigator.of(context)).showErrorMessage(result.message);
       }
+      setState(() => loading = false);
       // widget.onSuccess();
     }
   }

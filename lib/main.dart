@@ -29,20 +29,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-
-    return MaterialApp(
+    // GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+    return MaterialApp.router(
       builder: FToastBuilder(),
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'NexSpot App',
       darkTheme: fontThemeDark(),
-      theme: fontTheme(),                                  
-      // home: const SignUp(),
-      initialRoute: NamedRoutes.welcome,
-      onGenerateRoute: onGenerateRoute,
-      navigatorKey: navigatorKey,
+      theme: fontTheme(),              
+      routerConfig: goRouter(),                 
     );
-  } 
+  }
+
+ 
 }
 
 

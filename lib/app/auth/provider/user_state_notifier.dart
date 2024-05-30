@@ -6,7 +6,7 @@ part 'user_state_notifier.g.dart';
 class UserStateNotifier extends _$UserStateNotifier {
   
   @override
-  UserState build() => const UserState(firstName: "",  lastName:  "");
+  UserState build() => const UserState(firstName: "",  lastName:  "", email: "");
  
   update(UserState newUpdate) {
     state = newUpdate;
