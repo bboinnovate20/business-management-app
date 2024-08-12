@@ -7,12 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:912217817262:android:bbe2ea1442b82a75acad3f",
+        "mobilesdk_app_id": "1:912217817262:android:3407a140d6644d9cacad3f",
         "android_client_info": {
-          "package_name": "com.bboitech.nex_spot_app"
+          "package_name": "com.bboitech.nexSpot"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "912217817262-58o48bftgkvt80ten5ukddj9basdmvq4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyB7vVwh2ePFxBv3j7M2L8REoL-bsq5yoT8"
@@ -20,26 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:912217817262:android:ad35ccd443d45bf2acad3f",
-        "android_client_info": {
-          "package_name": "com.example.nex_spot_app"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyB7vVwh2ePFxBv3j7M2L8REoL-bsq5yoT8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912217817262-58o48bftgkvt80ten5ukddj9basdmvq4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "912217817262-39k0cnjc0atve1qtq4ivhpjjaq37thpf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.bboitech.nexSpotApp"
+              }
+            }
+          ]
         }
       }
     }

@@ -44,7 +44,7 @@ void main() {
 
         final dataInstance = FakeFirebaseFirestore();
     
-        final registerUser = FirebaseUserBusinessRemoteDataSource( userId: 1, database: dataInstance);
+        final registerUser = FirebaseUserBusinessRemoteDataSource(database: dataInstance);
         final registerUserBusiness = UserBusinessRepository(registerUser);
 
         final ReturnedStatus response = await registerUserBusiness.registerUserBusiness(userBusinessDetails);

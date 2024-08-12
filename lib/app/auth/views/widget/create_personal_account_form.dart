@@ -1,7 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:nex_spot_app/app/auth/auth_controller.dart';
-import 'package:nex_spot_app/app/auth/models/data/register.dart';
 import 'package:nex_spot_app/cores/common/custom_toast.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_container.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_text_field.dart';

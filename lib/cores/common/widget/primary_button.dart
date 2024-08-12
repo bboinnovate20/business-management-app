@@ -79,7 +79,11 @@ class CustomButton extends StatelessWidget {
     this.disabled = false,
     this.loading = false,
     this.isOutline = false,
-    this.bgColor 
+    this.bgColor,
+    this.radius = 10,
+    this.color = Colors.white,
+    this.verticalPadding = 15,
+    this.fontSize = 18
   });
 
   final void Function() onPressed;
@@ -90,6 +94,10 @@ class CustomButton extends StatelessWidget {
   final bool loading;
   final bool isOutline;
   final Color? bgColor;
+  final double radius;
+  final double verticalPadding;
+  final Color color;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +114,7 @@ class CustomButton extends StatelessWidget {
         //outline 
         ButtonStyle(
           
-          padding: const WidgetStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: 15)),
+          padding: WidgetStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: verticalPadding)),
           
           backgroundColor: disabled ? const WidgetStatePropertyAll(Colors.grey) : 
                 WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.pressed) ?
@@ -114,42 +122,47 @@ class CustomButton extends StatelessWidget {
           
           shape: WidgetStatePropertyAll(RoundedRectangleBorder(
             side: const BorderSide(width: 1),
-            borderRadius: BorderRadius.circular(10)))
+            borderRadius: BorderRadius.circular(radius)))
          ):
         
         ButtonStyle(
           
-          padding: const WidgetStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: 15)),
+          padding: WidgetStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: verticalPadding)),
           
           backgroundColor: disabled ? const WidgetStatePropertyAll(Colors.grey) : 
                 WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.pressed) ?
                 colorScheme.secondary : bgColor ?? colorScheme.primary),
 
           shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10)))
+            borderRadius: BorderRadius.circular(radius)))
          ),
         onPressed: disabled ? (){} : onPressed, 
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(title, 
-                style: TextStyle(color: isOutline ? Colors.black : Colors.white, fontSize: 18),
-            ),
-            if(loading)
-              Container(
-                width: 18,
-                height: 18,
-                margin: const EdgeInsets.symmetric(horizontal: 12),
-                child: const CircularProgressIndicator(
-                  color: Colors.white,
-                  strokeWidth: 3,
-                ),
-              )
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(title, 
+                  style: TextStyle(color: isOutline ? Colors.black : color, fontSize: fontSize),
+              ),
+              if(loading)
+                Container(
+                  width: 18,
+                  height: 18,
+                  margin: const EdgeInsets.symmetric(horizontal: 12),
+                  child: const CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 3,
+                  ),
+                )
+            ],
+          ),
         )),
-    );
+    ).rWidth;
   }
 }
+
+
 
 
 
@@ -254,5 +267,17 @@ class _AnimatedPrimaryButtonState extends State<AnimatedPrimaryButton> with Tick
           );
         }
       );
+  }
+}
+
+
+extension GapWith on SizedBox {
+  
+  SizedBox get rWidth {
+    return SizedBox(
+      width: width == 0 ? null : width,
+      height: height,
+      child: child,
+    );
   }
 }

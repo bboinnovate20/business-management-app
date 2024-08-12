@@ -7,7 +7,7 @@ class AppTheme {
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF781CAD),
           primary: const Color(0xFF781CAD),
-          secondary: const Color(0xFF1A0029),
+          secondary: const Color(0xFF4A0F6E),
           onPrimary: Colors.white,
           onSecondary: Colors.white,
           onSurface: Colors.black,
@@ -27,14 +27,25 @@ class AppTheme {
             headlineMedium: GoogleFonts.lora(
               textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
             ),
-             headlineSmall: GoogleFonts.lora(
-              textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
-            ),
+            //  headlineSmall: GoogleFonts.lora(
+            //   textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
+            // ),
             titleLarge: GoogleFonts.lora(
               textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
             ),
-            titleSmall: GoogleFonts.lora(
-              textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
+            // titleMedium: GoogleFonts.lora(
+            //   textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
+            // ),
+            // titleSmall: GoogleFonts.lora(
+            //   textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
+            // ),
+            // bodyLarge:GoogleFonts.gabarito(
+            //   textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold, fontSize: 26),
+            // ),
+            
+            
+            displaySmall:GoogleFonts.gabarito(
+              textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
             ),
             
           )
@@ -48,7 +59,7 @@ class DarkAppTheme extends AppTheme{
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF781CAD),
           primary: Colors.red,
-          secondary: const Color(0xFF1A0029),
+          secondary: const Color(0xFF4A0F6E),
           onPrimary: Colors.red,
           onSecondary: Colors.red,
           onSurface: Colors.red,

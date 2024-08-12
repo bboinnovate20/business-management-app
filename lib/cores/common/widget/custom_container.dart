@@ -6,12 +6,14 @@ class CustomContainer extends StatelessWidget {
     super.key,
     required this.child,
     this.withMargin = true,
-    this.bottom
+    this.bottom,
+    this.backgroundColor
   });
 
   final Widget child;
   final bool withMargin;
   final Widget? bottom;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +25,8 @@ class CustomContainer extends StatelessWidget {
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
-  
-          margin: withMargin ? const EdgeInsets.symmetric(horizontal: 18) : const EdgeInsets.all(0),  
+          color: backgroundColor,
+          padding: withMargin ? const EdgeInsets.symmetric(horizontal: 18) : const EdgeInsets.all(0),  
           child: child,
         ),
       ),

@@ -33,7 +33,7 @@ class CustomToast {
 
 
 class _ToastWidget extends StatefulWidget {
-  const _ToastWidget({super.key, required this.child});
+  const _ToastWidget({required this.child});
 
   final Widget child;
   @override

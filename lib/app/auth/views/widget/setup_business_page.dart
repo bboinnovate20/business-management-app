@@ -20,7 +20,7 @@ class SetupBusiness extends StatelessWidget {
       children: [
          const CustomHeader(
           title: 'Setup your Business',
-          subTitle: 'We require your little business',
+          subTitle: 'We require your little information about your business',
         ),
         Expanded(
             child: SetupBusinessForm(formKey: formKey, onSuccess: onCompletion),

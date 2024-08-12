@@ -7,7 +7,7 @@ part of 'user_business_repository_provider.dart';
 // **************************************************************************
 
 String _$userBusinessRepositoryHash() =>
-    r'4c452650de6494d0cb8ac2510cebf7ab21dff70c';
+    r'e9cb1a3073ad80954e44e8e70b7871eb1bdc9232';
 
 /// See also [userBusinessRepository].
 @ProviderFor(userBusinessRepository)

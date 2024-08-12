@@ -26,14 +26,16 @@ class _CustomToastViewState extends State<CustomToastView> {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: 400),
+      constraints: BoxConstraints(maxWidth: MediaQuery.sizeOf(context).width),
       child: Container(
-        width: double.infinity,
+        alignment: Alignment.center,
+        width: SizedBox.fromSize(child: const SizedBox.expand()).width,
         decoration: BoxDecoration(
           color: widget.isError ? Colors.red.shade50 : Colors.green.shade50,
           borderRadius: BorderRadius.circular(7)      
         ),
-        padding: const EdgeInsets.symmetric(vertical:17, horizontal: 10),
+        padding: const EdgeInsets.symmetric(vertical:17, horizontal: 25),
+        margin: const EdgeInsets.only(right: 10),
       
         child: Text(
             widget.toastMessage,

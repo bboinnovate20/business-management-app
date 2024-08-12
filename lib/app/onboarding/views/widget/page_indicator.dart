@@ -77,7 +77,6 @@ class TabPageCustomSelector extends TabPageSelector {
     );
   }
 
-      @override
     Widget build(BuildContext context) {
     final Color fixColor = color ?? Colors.transparent;
     final Color fixSelectedColor = selectedColor ?? Theme.of(context).colorScheme.secondary;

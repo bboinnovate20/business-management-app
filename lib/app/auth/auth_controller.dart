@@ -1,9 +1,9 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nex_spot_app/app/auth/models/data/register.dart';
 import 'package:nex_spot_app/app/auth/models/data/user.dart';
-import 'package:nex_spot_app/app/auth/models/data_sources/auth_remote_data_source.dart';
 import 'package:nex_spot_app/app/auth/provider/repository/user_auth_repository_provider.dart';
 import 'package:nex_spot_app/app/business/models/data/business.dart';
 import 'package:nex_spot_app/app/business/provider/repository/user_business_repository_provider.dart';
@@ -30,6 +30,7 @@ class RegisterController {
       User userData = register.data!;
       final otherData = register.otherData;
       _controllerRef.read(userStateNotifierProvider.notifier).update(UserState(
+        userId: userData.uid,
         isAuthenticated: register.success,
         email: userData.email ?? "",
         firstName: userData.displayName?.split(" ")[0] ?? otherData['firstName'],
@@ -39,11 +40,21 @@ class RegisterController {
   }
 
   registerBusiness(UserBusinessDetails userBusinessDetails) async {
-    final businessRegistration = await _controllerRef.read(userBusinessRepositoryProvider)
+    final businessRegistration = await _controllerRef.watch(userBusinessRepositoryProvider)
             .registerUserBusiness(userBusinessDetails);
 
     return businessRegistration;
     
+  }
+
+  Future<ReturnedStatus> uploadLogo(File path) async {
+    final ReturnedStatus businessLogo = await _controllerRef.watch(userBusinessRepositoryProvider).uploadBusinessLogo(path);
+    return businessLogo;
+  }
+
+   Future<ReturnedStatus> uploadSignature(File path) async {
+    final ReturnedStatus businessLogo = await _controllerRef.read(userBusinessRepositoryProvider).uploadBusinessSignature(path);
+    return businessLogo;
   }
 
 }

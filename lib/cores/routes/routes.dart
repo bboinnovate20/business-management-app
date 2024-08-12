@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nex_spot_app/app/auth/auth_controller.dart';
 import 'package:nex_spot_app/app/auth/views/login_screen.dart';
 import 'package:nex_spot_app/app/auth/views/signup_screen.dart';
+import 'package:nex_spot_app/app/dashboard/views/dashboard_screen.dart';
 import 'package:nex_spot_app/app/onboarding/views/onboarding_screen.dart';
-import 'package:nex_spot_app/app/welcome/splash_screen_controller.dart';
 import 'package:nex_spot_app/app/welcome/views/splash_screen.dart';
 import 'package:nex_spot_app/cores/common/widget/success.dart';
 import 'package:nex_spot_app/cores/constants/routes_constant.dart';
@@ -70,6 +69,11 @@ GoRouter goRouter() {
     GoRoute(
       path:  NamedRoutes.success,
       builder: (context, state) => Success(arguments: state.extra as ScreenArgument),
+    ),
+
+    GoRoute(
+      path: NamedRoutes.dashboard,
+      builder: (context, state) => const Dashboard(),
     ),
   ],
 );

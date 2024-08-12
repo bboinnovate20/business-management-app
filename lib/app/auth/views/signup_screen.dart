@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nex_spot_app/app/auth/auth_controller.dart';
+import 'package:nex_spot_app/app/auth/provider/user_state_notifier.dart';
 import 'package:nex_spot_app/app/auth/views/widget/setup_business_page.dart';
 import 'package:nex_spot_app/app/auth/views/widget/upload_section_page.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_container.dart';
@@ -8,9 +9,6 @@ import 'package:nex_spot_app/cores/routes/screen_args.dart';
 
 import 'widget/create_personal_account_page.dart';
 import 'widget/signup_indicator.dart';
-
-
-
 
 class SignUp extends ConsumerStatefulWidget {
   const SignUp({super.key, this.stage });

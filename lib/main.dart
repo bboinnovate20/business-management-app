@@ -10,7 +10,6 @@ import 'package:nex_spot_app/firebase_options.dart';
 import 'package:nex_spot_app/cores/routes/routes.dart';
 import 'package:nex_spot_app/cores/themes/themes.dart';
 
-import 'cores/constants/routes_constant.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

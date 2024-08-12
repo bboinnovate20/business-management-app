@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nex_spot_app/app/auth/auth_controller.dart';
@@ -7,6 +8,7 @@ import 'package:nex_spot_app/app/auth/provider/user_state_notifier.dart';
 import 'package:nex_spot_app/app/business/models/data/business.dart';
 import 'package:nex_spot_app/cores/common/custom_toast.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_container.dart';
+import 'package:nex_spot_app/cores/common/widget/custom_selection_text_field.dart';
 import 'package:nex_spot_app/cores/common/widget/custom_text_field.dart';
 import 'package:nex_spot_app/cores/common/widget/primary_button.dart';
 import 'package:nex_spot_app/cores/utils/validator.dart';
@@ -51,7 +53,7 @@ class _SignUpFormState extends ConsumerState<SetupBusinessForm> {
   fieldsNotEmpty() async {
     await Future.delayed(const Duration(milliseconds: 300));
     return businessAddressController.text.isNotEmpty && businessNameController.text.isNotEmpty
-            && stateController != null && businessCategoryController != null;
+            && stateController != null && businessCategoryController != null && businessRoleController != null;
   }
   
   @override
@@ -61,6 +63,7 @@ class _SignUpFormState extends ConsumerState<SetupBusinessForm> {
   }
 
   submit(BuildContext context) async {
+
     if(formKey.currentState!.validate()){
       setState(() => loading = true);
 
@@ -69,7 +72,7 @@ class _SignUpFormState extends ConsumerState<SetupBusinessForm> {
         street: businessAddressController.text, state: stateController.toString(), country: 'Nigeria');
 
       final UserBusinessDetails userBusinessDetails = UserBusinessDetails(
-        userId: ref.read(userStateNotifierProvider).email,
+        userId: ref.watch(userStateNotifierProvider).userId,  
         businessName:  businessNameController.text,
         businessAddress: userBusinessAddress,
         businessCategory: businessCategoryController.toString(),
@@ -85,6 +88,8 @@ class _SignUpFormState extends ConsumerState<SetupBusinessForm> {
       else {
         CustomToast(Navigator.of(context)).showErrorMessage(response.message);
       }
+
+      setState(() => loading = false);
     }
   }
 
@@ -97,6 +102,8 @@ class _SignUpFormState extends ConsumerState<SetupBusinessForm> {
 
   @override
   Widget build(BuildContext context) {
+    // print("userssss ${ref.watch(userStateNotifierProvider).userId}");
+          print(ref.watch(userStateNotifierProvider).userId);
     return CustomContainer(
       withMargin: false,
       bottom:  Container(
@@ -109,82 +116,79 @@ class _SignUpFormState extends ConsumerState<SetupBusinessForm> {
           }
         ),
       ),
-      child: Padding(
-      
-         padding: const EdgeInsets.only(top: 25),
-        child: Form(
-          key: formKey,
-          child:  ListView(
-            padding: const EdgeInsets.only(top: 25),
-          children: [
-            CustomTextField(
-              controller: businessNameController,
-              label: 'Business Name *', validator: (value) => isValidName(value!, field: "Business Name"), hintText: 'Please enter valid Name'),
-            CustomTextField(
-              controller: rcBusinessController,
-              label: 'Business RC Number (Optional)', validator: (value) => nameLength(value!,length: 10)),
-               CustomSelectionField(
-              label: 'Business Category',
-              options: const [
-                {
-                  'id': 1,
-                  'name': 'Food and Drinks'
-                },
-                {
-                  'id': 2,
-                  'name': 'Decorations'
-                },
-                {
-                  'id': 3,
-                  'name': 'Logistics'
-                },
-              ],
-              onChangedValue: (value) { setState(() => businessCategoryController = value);},),
-            CustomTextField(
-              controller: businessAddressController,
-              label: 'Business Address', validator: (value) => nameLength(value!,length: 10), keyboardType: TextInputType.streetAddress),
+      child: Form(
+        key: formKey,
+        child:  ListView(
+          padding: const EdgeInsets.only(top: 25),
+        children: [
+          CustomTextField(
+            controller: businessNameController,
+            label: 'Business Name *', validator: (value) => isValidName(value!, field: "Business Name"), hintText: 'Please enter valid Name'),
+          CustomTextField(
+            controller: rcBusinessController,
+            label: 'Business RC Number (Optional)', validator: (value) => nameLength(value!,length: 10)),
+            
             CustomSelectionField(
-              label: 'City',
-              options: const [
-                {
-                  'id': 1,
-                  'name': 'Lagos'
-                },
-                {
-                  'id': 2,
-                  'name': 'Abuja'
-                },
-                {
-                  'id': 3,
-                  'name': 'Uyo'
-                }
-              ],
-              onChangedValue: (value) { setState(() => stateController = value);},),
-               CustomSelectionField(
-              label: 'Role',
-              options: const [
-                {
-                  'id': 1,
-                  'name': 'Vendor'
-                },
-                {
-                  'id': 2,
-                  'name': 'Service'
-                }
-              ],
-              onChangedValue: (value) { print(value); setState(() => businessRoleController = value);},),
-                  
-          ],
-                  ),
-        onChanged: () async {
-          if(await fieldsNotEmpty()) {
-            setState(() =>readyToSubmit = true);
-          }
-          else {
-            if(readyToSubmit != false){setState(() =>readyToSubmit = false);}
-          }
-        },
-        ),
+            label: 'Business Category',
+            options: const [
+              {
+                'id': 1,
+                'name': 'Food and Drinks'
+              },
+              {
+                'id': 2,
+                'name': 'Decorations'
+              },
+              {
+                'id': 3,
+                'name': 'Logistics'
+              },
+            ],
+            onChangedValue: (value) { setState(() => businessCategoryController = value);},),
+          CustomTextField(
+            controller: businessAddressController,
+            label: 'Business Address', validator: (value) => nameLength(value!,length: 10), keyboardType: TextInputType.streetAddress),
+          CustomSelectionField(
+            label: 'City',
+            options: const [
+              {
+                'id': 1,
+                'name': 'Lagos'
+              },
+              {
+                'id': 2,
+                'name': 'Abuja'
+              },
+              {
+                'id': 3,
+                'name': 'Uyo'
+              }
+            ],
+            onChangedValue: (value) { setState(() => stateController = value);},),
+             CustomSelectionField(
+            label: 'Role',
+            options: const [
+              {
+                'id': 1,
+                'name': 'Vendor'
+              },
+              {
+                'id': 2,
+                'name': 'Service'
+              }
+            ],
+            onChangedValue: (value) {setState(() => businessRoleController = value);},),
+                
+        ],
+                ),
+      onChanged: () async {
+        if(await fieldsNotEmpty()) {
+          setState(() =>readyToSubmit = true);
+        }
+        else {
+          if(readyToSubmit != false){setState(() =>readyToSubmit = false);}
+        }
+      },
       ),
     );
   }
