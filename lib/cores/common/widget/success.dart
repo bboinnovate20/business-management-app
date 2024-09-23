@@ -24,20 +24,19 @@ class Success extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Center(
+                           Center(
                       child: SizedBox(
                         width: 200,
                         height: 250,
                         child: Center(
-                          // child: Text("hello"),
-                          child: RiveAnimation.asset('assets/animations/success.riv'),
+                          child: Image.asset("assets/images/success_image.png", width: 150)
                         ),
                       ),
                                           ),
                                           Text( 
                       textAlign: TextAlign.center,
                       
-                      arguments?.title ?? "", style: Theme.of(context).textTheme.bodyLarge?.copyWith(fontSize: 36, height:1.2)),
+                      arguments?.title ?? "", style: Theme.of(context).textTheme.displaySmall?.copyWith(fontSize: 36, height:1.2)),
                                            Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
                       child: Text(

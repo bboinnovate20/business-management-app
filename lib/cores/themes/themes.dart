@@ -11,9 +11,9 @@ class AppTheme {
           onPrimary: Colors.white,
           onSecondary: Colors.white,
           onSurface: Colors.black,
-            
+          tertiary: const Color(0xFFA020F0)
         ),
-  
+      
       
     );
 
@@ -36,9 +36,9 @@ class AppTheme {
             // titleMedium: GoogleFonts.lora(
             //   textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
             // ),
-            // titleSmall: GoogleFonts.lora(
-            //   textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
-            // ),
+            titleSmall: GoogleFonts.lora(
+              textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
+            ),
             // bodyLarge:GoogleFonts.gabarito(
             //   textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold, fontSize: 26),
             // ),
@@ -46,6 +46,9 @@ class AppTheme {
             
             displaySmall:GoogleFonts.gabarito(
               textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.bold),
+            ),
+           displayMedium:GoogleFonts.gabarito(
+              textStyle: theme.textTheme.headlineMedium?.copyWith(fontWeight: FontWeight.w600),
             ),
             
           )

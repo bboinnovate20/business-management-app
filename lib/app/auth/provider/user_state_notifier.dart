@@ -8,7 +8,6 @@ class UserStateNotifier extends _$UserStateNotifier {
   
   @override
   UserState build() { 
-    ref.keepAlive();
     return const UserState(userId: "", firstName: "",  lastName:  "", email: "e");
   }
   

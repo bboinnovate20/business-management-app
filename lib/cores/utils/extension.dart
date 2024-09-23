@@ -29,6 +29,24 @@ extension SpacedColumn on Column {
   }
 }
 
+extension SpacedList on List {
+  spacedColumn (double space){
+    final spacedColumn = <Widget>[];
+    forEach((child) {
+      // if(spacedColumn.isEmpty) {
+      //   spacedColumn.add(child);
+      // }
+      // else {
+        spacedColumn.add(SizedBox(height: space));
+        spacedColumn.add(child);
+      // }
+    });
+    return spacedColumn.toList();
+    // return Column(crossAxisAlignment: crossAxisAlignment, mainAxisAlignment: mainAxisAlignment,mainAxisSize: mainAxisSize, children: spacedColumn);
+  }
+}
+
+
 extension AbbreviateFigure on num {
   get roundUnit {
     return roundFigure(toDouble());

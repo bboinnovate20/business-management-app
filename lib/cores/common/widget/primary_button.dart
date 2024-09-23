@@ -167,6 +167,8 @@ class CustomButton extends StatelessWidget {
 
 
 
+
+
 class AnimatedPrimaryButton extends StatefulWidget  {
   const AnimatedPrimaryButton({
     super.key,
@@ -175,7 +177,9 @@ class AnimatedPrimaryButton extends StatefulWidget  {
     this.height = 60,
     this.disabled = false,
     this.title = "Continue",
-    this.outline = false
+    this.outline = false,
+    this.radius = 10,
+    this.bgColor,
   });
 
   final void Function() onPressed;
@@ -185,12 +189,13 @@ class AnimatedPrimaryButton extends StatefulWidget  {
   final double height;
   final String title;
   final bool outline;
-
+  final double radius;
+  final Color? bgColor;
   @override
   State<AnimatedPrimaryButton> createState() => _AnimatedPrimaryButtonState();
 }
 
-class _AnimatedPrimaryButtonState extends State<AnimatedPrimaryButton> with TickerProviderStateMixin {
+class _AnimatedPrimaryButtonState extends State<AnimatedPrimaryButton> with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
 
     late AnimationController _opacityController;
     late final Animation<double> _opacity;
@@ -209,9 +214,13 @@ class _AnimatedPrimaryButtonState extends State<AnimatedPrimaryButton> with Tick
   }
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   void dispose() {
-    super.dispose();
     _opacityController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -230,13 +239,13 @@ class _AnimatedPrimaryButtonState extends State<AnimatedPrimaryButton> with Tick
                   padding: const WidgetStatePropertyAll(EdgeInsetsDirectional.symmetric(vertical: 15)),
                   backgroundColor: WidgetStateProperty.resolveWith((states) => 
                   states.contains(WidgetState.pressed) ?
-                      colorScheme.secondary : widget.outline ? Colors.white : colorScheme.primary),
+                      colorScheme.secondary : widget.outline ? Colors.white : widget.bgColor ?? colorScheme.primary),
                   
                   // MaterialStatePropertyAll(colorScheme.primary),
                   shape: WidgetStatePropertyAll(RoundedRectangleBorder(
                     side: widget.outline ?  BorderSide(width: 1.0, color: colorScheme.primary) : BorderSide.none,
                     borderRadius: BorderRadius.circular(lerp(
-                      _opacity.value, 0.0, 1.0, 100, 10
+                      _opacity.value, 0.0, 1.0, 100, widget.radius
                     ))))
                 ),
                 onPressed: widget.disabled ? () => {} : widget.onPressed, 

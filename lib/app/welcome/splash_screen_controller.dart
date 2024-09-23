@@ -24,6 +24,8 @@ class SplashScreenController {
   initiateAuthentication(BuildContext context) async {
           final user = FirebaseAuth.instance.currentUser;
           
+
+          
           
           if (user != null) {
             final userData = UserState(

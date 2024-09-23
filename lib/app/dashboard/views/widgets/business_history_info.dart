@@ -10,7 +10,7 @@ class BusinessHistoryInfo extends StatelessWidget {
     return  Container(
       decoration:   BoxDecoration(
         boxShadow: const [
-          BoxShadow(color: Colors.black38, offset: Offset(1, 1), blurRadius:4),
+          BoxShadow(color: Colors.black26, offset: Offset(1, 1), blurRadius:5),
           
         ],
         borderRadius: BorderRadius.circular(10),
@@ -18,7 +18,7 @@ class BusinessHistoryInfo extends StatelessWidget {
         
         ),
       
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
